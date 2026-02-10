@@ -1,60 +1,44 @@
 # Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.14.
+# Passkeys Frontend (Angular) – POC
 
-## Development server
+Ce projet est un **frontend Angular** de démonstration pour une authentification **sans mot de passe** via **Passkeys (WebAuthn)**.
 
-To start a local development server, run:
+Il fournit une petite interface (email + boutons) qui permet de :
+- **Register** : créer une Passkey sur l’appareil (Touch ID / Face ID / PIN)
+- **Login** : se connecter avec cette Passkey
+- Afficher les réponses JSON (logs) renvoyées par l’API backend
 
-```bash
-ng serve
-```
+> ⚠️ WebAuthn/Passkeys fonctionne côté navigateur uniquement. Ce POC est donc conçu pour tourner en mode SPA (pas SSR).
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+---
 
-## Code scaffolding
+## Fonctionnement (résumé)
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Le frontend appelle un backend (API) qui expose des endpoints WebAuthn :
+- `POST /webauthn/register/start`
+- `POST /webauthn/register/finish`
+- `POST /webauthn/login/start`
+- `POST /webauthn/login/finish`
 
-```bash
-ng generate component component-name
-```
+Le navigateur utilise ensuite l’API WebAuthn native :
+- `navigator.credentials.create()` pour l’enregistrement
+- `navigator.credentials.get()` pour l’authentification
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+---
 
-```bash
-ng generate --help
-```
+## Pré-requis
 
-## Building
+- Node.js (idéalement **LTS** : Node 20 ou 22)
+- npm (ou pnpm/yarn si tu préfères)
+- Un backend lancé en local (voir ci-dessous)
 
-To build the project run:
+---
 
-```bash
-ng build
-```
+## Lancer le projet en local
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+### 1) Installer les dépendances
 
 ```bash
-ng e2e
-```
+npm install
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
-# frontend
