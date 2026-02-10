@@ -1,0 +1,13 @@
+<div class="wrap">
+  <h1>Passkeys (WebAuthn) – Demo</h1>
+
+  <label>Email</label>
+  <input [(ngModel)]="email" placeholder="test@asso.fr" />
+
+  <div class="btns">
+    <button (click)="onRegister()" [disabled]="busy">Register</button>
+    <button (click)="onLogin()" [disabled]="busy">Login</button>
+  </div>
+
+  <pre class="log">{{ log }}</pre>
+</div>
